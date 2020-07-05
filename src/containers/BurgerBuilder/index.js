@@ -10,7 +10,7 @@ class BurgerBuilder extends React.Component {
   render(){
     return(
       <>
-      <Burger />
+      <Burger ingredients={this.state} />
       <div>Burger Controler</div>
       </>
     );
