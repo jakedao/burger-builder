@@ -7,11 +7,11 @@ import Ingredients from './Ingredient';
 import id from 'shortid';
 
 const Burger = ({ingredients}) => {
+  const {cheese, meat, salad} = ingredients
+  let result = Array(0);
 
   const ingreArray = () => {
-    let result = Array(0);
     for (let value in ingredients) {
-
       let numberOfIngre = Array(ingredients[value]);
       let temp = result.concat(numberOfIngre.fill(value))
       result = temp;
@@ -22,7 +22,11 @@ const Burger = ({ingredients}) => {
   return (
     <div className={classes.Burger}>
       <Ingredient ingredients='bread-top' />
-      {ingreArray().map(item => <Ingredients ingredients={item} key={id.generate()} />)}
+      {cheese === 0 && meat === 0 && salad === 0 
+        ? <p>Please add some ingredients !!!</p>
+        : ingreArray().map(item => <Ingredients ingredients={item} key={id.generate()} /> 
+      )}
+      
       <Ingredient ingredients='bread-bottom'/>
     </div>
   );

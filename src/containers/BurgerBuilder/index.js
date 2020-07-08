@@ -1,17 +1,17 @@
 import React from 'react';
-import {Burger} from '../../components'
-class BurgerBuilder extends React.Component {
+import {Burger, Controller} from '../../components';
 
+class BurgerBuilder extends React.Component {
   state = {
-    cheese: 2,
-    meat: 1,
-    salad: 2
+    cheese: 0,
+    meat: 0,
+    salad: 1
   }
   render(){
     return(
       <>
       <Burger ingredients={this.state} />
-      <div>Burger Controler</div>
+      <Controller />
       </>
     );
   }
