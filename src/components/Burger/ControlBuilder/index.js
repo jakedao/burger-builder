@@ -8,11 +8,16 @@ const controls = [
   {label: 'Meat', type: 'meat'},
 ]
 
-const ControlBuilder = () => {
+const ControlBuilder = (props) => {
   return (
     <div>
       {controls && controls.map(item => 
-        <Controller key={item.label} label={item.label}/>
+        <Controller 
+          key={item.label} 
+          label={item.label}
+          onAdd={() => props.addIngredient(item.type)}
+          onRemove= {() => props.removeIngredient(item.type)}
+        />
       )}
     </div>
   )
