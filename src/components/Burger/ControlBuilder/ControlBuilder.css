@@ -2,6 +2,26 @@
   display:flex;
   flex-flow: column nowrap;
   align-items: center;
-};
-.TotalPrice {
-};
+}
+
+.OrderButton {
+  margin-top: 1rem;
+  background-color: #A0DB41;
+  border: 1px solid #966909;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: .5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.OrderButton:hover {
+  background-color: darkgreen;
+  color: #966909;
+}
+
+.OrderButton:disabled {
+  background-color: white;
+  color: darkgreen;
+  cursor: not-allowed;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classes from './ingredients.css'
+import classes from './ingredients.css';
 
 
 const Ingredients = ({ingredients}) => {  

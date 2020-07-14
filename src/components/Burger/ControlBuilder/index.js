@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Controller from './Controllers';
+
 import classes from './ControlBuilder.css';
 
 const controls = [
@@ -22,7 +24,10 @@ const ControlBuilder = (props) => {
           />
         )}
       </div>
-        <div className={classes.TotalPrice}> {`Total Price: ${props.totalPrice}$`}</div>
+        <div>
+          <strong>{`Total Price: ${props.totalPrice}$`}</strong>
+        </div>
+        <button className={classes.OrderButton} disabled>ORDER NOW</button>
     </div>
   )
 }
