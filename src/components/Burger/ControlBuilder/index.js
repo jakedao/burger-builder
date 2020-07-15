@@ -11,6 +11,11 @@ const controls = [
   {label: 'Meat', type: 'meat'},
 ]
 
+const orderButtonState = (price) => {
+  console.log(`Check total price for disable state`,  price < 0 ? false : true);
+  return price < 0 ? false : true
+};
+
 const ControlBuilder = (props) => {
   return (
     <div className={classes.Wrapper}>
@@ -27,7 +32,12 @@ const ControlBuilder = (props) => {
         <div>
           <strong>{`Total Price: ${props.totalPrice}$`}</strong>
         </div>
-        <button className={classes.OrderButton} disabled>ORDER NOW</button>
+        <button 
+          className={classes.OrderButton} 
+          disabled={props.isDisabled}
+        >
+          ORDER NOW
+        </button>
     </div>
   )
 }

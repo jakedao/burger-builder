@@ -6,7 +6,7 @@
 
 .OrderButton {
   margin-top: 1rem;
-  background-color: #A0DB41;
+  background-color: #58860e;
   border: 1px solid #966909;
   font-weight: bold;
   font-size: 1rem;
@@ -21,7 +21,7 @@
 }
 
 .OrderButton:disabled {
-  background-color: white;
-  color: darkgreen;
+  background-color: darkgrey;
+  color: grey;
   cursor: not-allowed;
 }

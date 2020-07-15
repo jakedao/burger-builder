@@ -1,5 +1,5 @@
 import React from 'react';
-import {Burger, Controller} from '../../components';
+import {Burger, Controller, Modal, OrderSummary} from '../../components';
 import { object } from 'prop-types';
 
 class BurgerBuilder extends React.Component {
@@ -57,10 +57,14 @@ class BurgerBuilder extends React.Component {
     return(
       <div>
         <Burger ingredients={this.state.ingredients} />
+        <Modal>
+          <OrderSummary />
+        </Modal>
         <Controller 
           addIngredient={this.onAddIngredients}
           removeIngredient={this.onRemoveIngredient}
           totalPrice={this.state.totalPrice}
+          isDisabled={this.state.totalPrice <= 0 ? true : false}
         />
       </div>
     );
