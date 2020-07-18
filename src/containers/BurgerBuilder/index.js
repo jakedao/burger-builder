@@ -20,6 +20,7 @@ class BurgerBuilder extends React.Component {
         bacon: 1,
       },
       totalPrice: 0,
+      isOrdering: false,
     }
   }
 
@@ -53,18 +54,24 @@ class BurgerBuilder extends React.Component {
     })
   };
 
+
+  handlerModalVisible = () => {
+    this.setState({isOrdering: true});
+  }
+
   render(){
     return(
       <div>
         <Burger ingredients={this.state.ingredients} />
-        <Modal>
-          <OrderSummary />
+        <Modal show={this.state.isOrdering}>
+          <OrderSummary ingredients={this.state.ingredients}/>
         </Modal>
         <Controller 
           addIngredient={this.onAddIngredients}
           removeIngredient={this.onRemoveIngredient}
           totalPrice={this.state.totalPrice}
           isDisabled={this.state.totalPrice <= 0 ? true : false}
+          onShow={() => this.handlerModalVisible()}
         />
       </div>
     );

@@ -35,6 +35,7 @@ const ControlBuilder = (props) => {
         <button 
           className={classes.OrderButton} 
           disabled={props.isDisabled}
+          onClick={props.onShow}
         >
           ORDER NOW
         </button>
