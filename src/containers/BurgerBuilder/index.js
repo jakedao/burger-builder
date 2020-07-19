@@ -1,6 +1,5 @@
 import React from 'react';
 import {Burger, Controller, Modal, OrderSummary} from '../../components';
-import { object } from 'prop-types';
 
 class BurgerBuilder extends React.Component {
   constructor(props){
@@ -59,12 +58,22 @@ class BurgerBuilder extends React.Component {
     this.setState({isOrdering: true});
   }
 
+  handleModalCancel = () => {
+    this.setState({isOrdering: false})
+  };
+
   render(){
     return(
       <div>
         <Burger ingredients={this.state.ingredients} />
-        <Modal show={this.state.isOrdering}>
-          <OrderSummary ingredients={this.state.ingredients}/>
+        <Modal 
+          show={this.state.isOrdering}
+          onModalCancelling={this.handleModalCancel}
+        >
+          <OrderSummary 
+            ingredients={this.state.ingredients}
+            totalPrice={this.state.totalPrice}
+          />
         </Modal>
         <Controller 
           addIngredient={this.onAddIngredients}

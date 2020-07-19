@@ -1,6 +1,8 @@
 import React from 'react';
 import id from 'shortid';
 
+import classes from './OrderSummary.css'
+
 const OrderSummary = (props) => {
 
   //Object.keys to create an array with the key of the object
@@ -19,10 +21,17 @@ const OrderSummary = (props) => {
     <div>
       <h3>Order Sumary</h3>
       <p>A delicious burger with following ingredients:</p>
-      <ul>
-        {ingredientSummary}
-      </ul>
-      <button>CONTINUE</button>
+      <div className={classes.Wrapper}>
+        <div style={{marginBottom: '1.5rem'}}>
+          <ul>
+            {ingredientSummary}
+          </ul>
+        </div>
+        <div className={classes.OrderFooter}>
+          <button className={classes.ProceedButton}>Proceed</button>
+          <div className={classes.Price}>Total:{props.totalPrice}$</div>
+        </div>
+      </div>
     </div>
   );
 };
