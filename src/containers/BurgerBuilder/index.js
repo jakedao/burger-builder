@@ -18,7 +18,7 @@ class BurgerBuilder extends React.Component {
         salad: 0.5,
         bacon: 1,
       },
-      totalPrice: 0,
+      totalPrice: 4,
       isOrdering: false,
     }
   }
@@ -62,6 +62,10 @@ class BurgerBuilder extends React.Component {
     this.setState({isOrdering: false})
   };
 
+  handlePurchaseOrder = () => {
+    alert('You are going to ordering the burger...')
+  }
+
   render(){
     return(
       <div>
@@ -73,6 +77,8 @@ class BurgerBuilder extends React.Component {
           <OrderSummary 
             ingredients={this.state.ingredients}
             totalPrice={this.state.totalPrice}
+            handlePurchase={this.handlePurchaseOrder}
+            handleCancelling={this.handleModalCancel}
           />
         </Modal>
         <Controller 

@@ -1,7 +1,8 @@
 import React from 'react';
 import id from 'shortid';
 
-import classes from './OrderSummary.css'
+import classes from './OrderSummary.css';
+import StyledButton from '../../../common/Button/Button'
 
 const OrderSummary = (props) => {
 
@@ -16,7 +17,6 @@ const OrderSummary = (props) => {
     )
   });
 
-  console.log(`Your ingredient is`,ingredientSummary);
   return (
     <div>
       <h3>Order Sumary</h3>
@@ -27,8 +27,10 @@ const OrderSummary = (props) => {
             {ingredientSummary}
           </ul>
         </div>
+        <h3>Do you continue ?</h3>
         <div className={classes.OrderFooter}>
-          <button className={classes.ProceedButton}>Proceed</button>
+          <StyledButton isPrimary clicked={props.handlePurchase}>PROCEED</StyledButton>
+          <StyledButton isPrimary={false} clicked={props.handleCancelling}>CANCEL</StyledButton>
           <div className={classes.Price}>Total:{props.totalPrice}$</div>
         </div>
       </div>
