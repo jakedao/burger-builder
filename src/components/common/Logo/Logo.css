@@ -1,0 +1,17 @@
+.Logo {
+  background-color: white;
+  height: 80%;
+  box-sizing: border-box;
+  padding: .5rem;
+  border-radius: .5rem;
+}
+
+.Logo img {
+  /*
+    The wrapper taking 100% height of its parent by 
+    inheritting attribute
+    then image inside set the height to 100% which its max-height is never exceed 
+    its defined container
+  */
+  height: 100%;
+}
