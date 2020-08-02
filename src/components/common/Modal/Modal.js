@@ -4,11 +4,12 @@ import Backdrop from '../Backdrop/Backdrop';
 import classes from './Modal.css';
 
 const Modal = (props) => {
+  console.log(`This checking Modal and backdrop visible`, props.show)
   return (
     props.show && (
       <>
         <Backdrop 
-          show={props.modalVisbile}
+          show={props.show}
           onCancle={props.onModalCancelling}
         />
         <div 
@@ -22,9 +23,13 @@ const Modal = (props) => {
   );
 };
 
+Modal.defaultProps = {
+  modalVisbile: false,
+}
+
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
-  modalVisbile: PropTypes.bool.isRequired,
+  modalVisbile: PropTypes.bool,
   onModalCancelling: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 }

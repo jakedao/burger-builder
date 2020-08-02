@@ -72,7 +72,7 @@ class BurgerBuilder extends React.Component {
         <Burger ingredients={this.state.ingredients} />
         <Modal 
           show={this.state.isOrdering}
-          onModalCancelling={this.handleModalCancel}
+          onModalCancelling={() => this.handleModalCancel()}
         >
           <OrderSummary 
             ingredients={this.state.ingredients}

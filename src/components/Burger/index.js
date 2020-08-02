@@ -33,6 +33,10 @@ const Burger = ({ingredients}) => {
 };
 
 Burger.propTypes = {
-  ingredients: PropTypes.shape({})
+  ingredients: PropTypes.shape({
+    cheese: PropTypes.number.isRequired,
+    meat: PropTypes.number.isRequired,
+    salad: PropTypes.number.isRequired
+  })
 }
 export default Burger;

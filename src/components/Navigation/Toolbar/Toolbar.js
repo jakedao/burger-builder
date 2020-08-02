@@ -7,7 +7,9 @@ import classes from './Toolbar.css'
 const Toolbar = (props) => {
   return (
     <header className={classes.Toolbar}>
-      <div>Menu</div>
+      <div 
+        onClick={props.openHamburgerMenu} 
+        style={{cursor: 'pointer'}}>Menu</div>
       <Logo />
       <nav>
         <Navigation />
@@ -15,5 +17,9 @@ const Toolbar = (props) => {
     </header>
   );
 };
+
+Toolbar.propTypes = {
+  openHamburgerMenu: PropTypes.func.isRequired
+}
 
 export default Toolbar
