@@ -23,7 +23,7 @@ const Layout = (props) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   handleHamburgerMenuVisible: PropTypes.func.isRequired,
-  toggleHamburgerMenu: PropTypes.func.isRequired
+  toggleHamburgerMenu: PropTypes.bool.isRequired
 }
 
 export default Layout;

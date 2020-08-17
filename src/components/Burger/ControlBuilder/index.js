@@ -43,11 +43,11 @@ const ControlBuilder = (props) => {
   )
 }
 
-ControlBuilder.propTyes = {
+ControlBuilder.propTypes = {
   addIngredient: PropTypes.func.isRequired,
   removeIngredient: PropTypes.func.isRequired,
   totalPrice: PropTypes.number.isRequired,
-  isDisbaled: PropTypes.bool.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
   onShow: PropTypes.func.isRequired
 }
 

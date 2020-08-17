@@ -3,10 +3,11 @@
   z-index: 500;
   background-color: white;
   border: 1px solid #ccc;
-  box-shadow: 1px p1x 1px black;
+  box-shadow: 1px 1px black;
   padding: 2rem;
   top: 30%;
-  left: 30%;
+  left: 40%;
   box-sizing: border-box; 
   transition: all 0.3s ease-in-out;
+  border-radius: .3rem;
 }

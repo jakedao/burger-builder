@@ -13,7 +13,9 @@
 }
 
 .Price { 
-
+  font-size: 1.5rem;
+  color: #fa4932;
+  font-weight: bold;
 }
 
 .ProceedButton {

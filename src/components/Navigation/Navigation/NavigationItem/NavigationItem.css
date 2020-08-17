@@ -1,5 +1,4 @@
 .NavigationItem {
-  margin-bottom: .5rem;
   box-sizing: border-box;
   display: block;
   height: 100%;
@@ -38,9 +37,9 @@
   }
 
   .NavigationItem a {
-    color: white;
+    color: #8F5C2C;
     height: 100%;
-    padding: 16px  10px;
+    padding: 10px;
     border-bottom: 4px solid transparent;
   }
 }

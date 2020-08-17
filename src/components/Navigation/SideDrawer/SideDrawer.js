@@ -8,18 +8,15 @@ import classes from './SideDrawer.css';
 
 const SideDrawer = (props) => {
 
-  let attachedClass = 
-    props.sideDrawerVisible 
-      ? [classes.SideDrawer, classes.Open] 
-      : [classes.SideDrawer, classes.Close] 
+  let attachedClass = [classes.SideDrawer, classes.Close]
+  if(props.sideDrawerVisible) {
+    attachedClass = [classes.SideDrawer, classes.Open]
+  } 
   
   console.log('Check Class of SideDrawer',attachedClass.join(' '))
   return (
-    props.sideDrawerVisible && (
       <>
-        <BackDrop 
-          show={props.sideDrawerVisible}
-          onCancle={props.onToggleHamburgerMenu}/>
+        <BackDrop show={props.sideDrawerVisible} onCancle={props.onToggleHamburgerMenu}/>
         <div className={attachedClass.join(' ')}>
           <div className={classes.Logo}>
             <Logo />
@@ -29,7 +26,6 @@ const SideDrawer = (props) => {
           </nav>
         </div>
       </>
-    )
   );
 }
 
