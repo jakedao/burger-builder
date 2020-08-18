@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {Burger, Controller, Modal, OrderSummary} from '../../components';
+import instance from '../../axios-order';
 
 class BurgerBuilder extends React.Component {
   constructor(props){
@@ -62,8 +64,37 @@ class BurgerBuilder extends React.Component {
     this.setState({isOrdering: false})
   };
 
+  onReset = () => {
+    this.setState({
+      ingredients: {
+        cheese: 0,
+        meat: 0,
+        salad: 0,
+        bacon: 0,
+      },
+      totalPrice: 4
+    })
+  }
   handlePurchaseOrder = () => {
-    alert('You are going to ordering the burger...')
+
+    const data = {
+      ingredients: this.state.ingredients,
+      customerInfo: {
+        name: 'Triana',
+        address: '259 Tran Hung Dao, D1, Co Giang Ward, HCMC',
+        paymentMethod: 'Momo',
+        shippingExpress: true
+      }
+    }
+    //alert('You are going to ordering the burger...')
+    instance.post('/orders.json',data)
+      .then(res => {
+          alert('Order is placing, you will be contacted shortly')
+          console.log(res)
+          this.handleModalCancel()
+          this.onReset()
+        })
+      .catch(error => console.log(error));
   }
 
   render(){

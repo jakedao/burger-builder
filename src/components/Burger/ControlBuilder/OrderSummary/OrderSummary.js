@@ -6,11 +6,7 @@ import classes from "./OrderSummary.css";
 import StyledButton from "../../../common/Button/Button";
 
 class OrderSummary extends React.PureComponent {
-
-  shouldComponentUpdate() {
-    
-  }
-
+  
   render() {
     //Object.keys to create an array with the key of the object
     const ingredientSummary = Object.keys(this.props.ingredients).map((item) => {
