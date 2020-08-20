@@ -37,7 +37,7 @@ Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   modalVisbile: PropTypes.bool,
   onModalCancelling: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default Modal;

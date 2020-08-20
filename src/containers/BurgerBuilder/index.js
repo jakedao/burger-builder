@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {Burger, Controller, Modal, OrderSummary} from '../../components';
+import {Burger, Controller, Modal, OrderSummary, Spinner} from '../../components';
 import instance from '../../axios-order';
+import withErrorHandler from '../../hoc/withErrorHandler'
 
 class BurgerBuilder extends React.Component {
   constructor(props){
@@ -22,6 +23,7 @@ class BurgerBuilder extends React.Component {
       },
       totalPrice: 4,
       isOrdering: false,
+      isLoading: false,
     }
   }
 
@@ -76,7 +78,7 @@ class BurgerBuilder extends React.Component {
     })
   }
   handlePurchaseOrder = () => {
-
+    this.setState({isLoading: true})
     const data = {
       ingredients: this.state.ingredients,
       customerInfo: {
@@ -87,41 +89,50 @@ class BurgerBuilder extends React.Component {
       }
     }
     //alert('You are going to ordering the burger...')
-    instance.post('/orders.json',data)
+    instance.post('/orders',data)
       .then(res => {
-          alert('Order is placing, you will be contacted shortly')
           console.log(res)
           this.handleModalCancel()
           this.onReset()
+          this.setState({isLoading: false})
         })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.setState({isLoading: false})
+        console.log(error)
+      });
   }
 
   render(){
     return(
-      <div>
-        <Burger ingredients={this.state.ingredients} />
-        <Modal 
-          show={this.state.isOrdering}
-          onModalCancelling={() => this.handleModalCancel()}
-        >
-          <OrderSummary 
-            ingredients={this.state.ingredients}
-            totalPrice={this.state.totalPrice}
-            handlePurchase={this.handlePurchaseOrder}
-            handleCancelling={this.handleModalCancel}
-          />
-        </Modal>
-        <Controller 
-          addIngredient={this.onAddIngredients}
-          removeIngredient={this.onRemoveIngredient}
-          totalPrice={this.state.totalPrice}
-          isDisabled={this.state.totalPrice <= 0 ? true : false}
-          onShow={() => this.handlerModalVisible()}
-        />
-      </div>
+      <>
+        {this.state.isLoading 
+          ? <Spinner />
+          : <div>
+              <Burger ingredients={this.state.ingredients} />
+              <Modal 
+                show={this.state.isOrdering}
+                onModalCancelling={() => this.handleModalCancel()}
+              >
+                <OrderSummary 
+                  ingredients={this.state.ingredients}
+                  totalPrice={this.state.totalPrice}
+                  handlePurchase={this.handlePurchaseOrder}
+                  handleCancelling={this.handleModalCancel}
+                />
+              </Modal>
+              <Controller 
+                addIngredient={this.onAddIngredients}
+                removeIngredient={this.onRemoveIngredient}
+                totalPrice={this.state.totalPrice}
+                isDisabled={this.state.totalPrice <= 0 ? true : false}
+                onShow={() => this.handlerModalVisible()}
+              />
+            </div>
+        }
+        
+      </>
     );
   }
 };
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, instance);
