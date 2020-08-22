@@ -31,10 +31,11 @@ class Modal extends React.Component {
 
 Modal.defaultProps = {
   modalVisbile: false,
+  show: false,
 };
 
 Modal.propTypes = {
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
   modalVisbile: PropTypes.bool,
   onModalCancelling: PropTypes.func.isRequired,
   children: PropTypes.node,

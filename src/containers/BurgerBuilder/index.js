@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Burger, Controller, Modal, OrderSummary, Spinner} from '../../components';
-import instance from '../../axios-order';
+import instance from '../../apis/axios-order';
 import withErrorHandler from '../../hoc/withErrorHandler'
 
 class BurgerBuilder extends React.Component {
@@ -9,12 +9,7 @@ class BurgerBuilder extends React.Component {
     super(props)
 
     this.state = {
-      ingredients : {
-        cheese: 0,
-        meat: 0,
-        salad: 0,
-        bacon: 0,
-      },
+      ingredients : null,
       pricePerUnit: {
         cheese: 0.5,
         meat: 1.5,
@@ -27,6 +22,14 @@ class BurgerBuilder extends React.Component {
     }
   }
 
+  componentDidMount() {
+    instance.get('/ingredients.json')
+      .then(res => {
+        this.setState({ingredients: res.data})
+      })
+      .catch(error => console.log(error))
+  }
+  
   onAddIngredients = (type) => {
 
     let newIngre = {...this.state.ingredients};
@@ -89,7 +92,7 @@ class BurgerBuilder extends React.Component {
       }
     }
     //alert('You are going to ordering the burger...')
-    instance.post('/orders',data)
+    instance.post('/orders.json',data)
       .then(res => {
           console.log(res)
           this.handleModalCancel()
@@ -108,17 +111,22 @@ class BurgerBuilder extends React.Component {
         {this.state.isLoading 
           ? <Spinner />
           : <div>
-              <Burger ingredients={this.state.ingredients} />
+              {this.state.ingredients 
+                ? <Burger ingredients={this.state.ingredients}/>
+                : <div style={{textAlign: 'center', padding: '2rem', fontSize: '1.5rem'}}>Ingredients can not be loaded !!!</div>
+              }
               <Modal 
                 show={this.state.isOrdering}
                 onModalCancelling={() => this.handleModalCancel()}
               >
-                <OrderSummary 
-                  ingredients={this.state.ingredients}
-                  totalPrice={this.state.totalPrice}
-                  handlePurchase={this.handlePurchaseOrder}
-                  handleCancelling={this.handleModalCancel}
-                />
+                {this.state.ingredients && (
+                  <OrderSummary 
+                    ingredients={this.state.ingredients}
+                    totalPrice={this.state.totalPrice}
+                    handlePurchase={this.handlePurchaseOrder}
+                    handleCancelling={this.handleModalCancel}
+                  />
+                )}
               </Modal>
               <Controller 
                 addIngredient={this.onAddIngredients}
