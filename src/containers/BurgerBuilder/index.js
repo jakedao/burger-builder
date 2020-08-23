@@ -1,8 +1,15 @@
 import React from 'react';
 
-import {Burger, Controller, Modal, OrderSummary, Spinner} from '../../components';
+import {
+  Burger, 
+  Controller, 
+  Modal, 
+  OrderSummary, 
+  Spinner, 
+  TestComp } from '../../components';
 import instance from '../../apis/axios-order';
 import withErrorHandler from '../../hoc/withErrorHandler'
+import Axios from 'axios';
 
 class BurgerBuilder extends React.Component {
   constructor(props){
@@ -19,6 +26,7 @@ class BurgerBuilder extends React.Component {
       totalPrice: 4,
       isOrdering: false,
       isLoading: false,
+      testCompVisible: false,
     }
   }
 
@@ -105,6 +113,14 @@ class BurgerBuilder extends React.Component {
       });
   }
 
+  toggleTestComponent = () => {
+    this.setState(prevState => {
+      return {
+        testCompVisible: !prevState.testCompVisible
+      }
+    })
+  }
+
   render(){
     return(
       <>
@@ -136,8 +152,9 @@ class BurgerBuilder extends React.Component {
                 onShow={() => this.handlerModalVisible()}
               />
             </div>
-        }
-        
+          }
+          {/* <button onClick={this.toggleTestComponent}>Button</button>
+          <TestComp visible={this.state.testCompVisible}/> */}
       </>
     );
   }
