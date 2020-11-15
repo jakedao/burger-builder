@@ -1,10 +1,12 @@
 import React from 'react';
-import { BurgerBuilder, LayOutContainer } from './containers';
+import { Route } from 'react-router-dom'
+import { BurgerBuilder, LayOutContainer, CheckOutSummaryContainer } from './containers';
 
 function App() {
   return (
     <LayOutContainer>
-      <BurgerBuilder />
+      <Route path='/' exact render={() => <BurgerBuilder />} />
+      <Route path='/checkout' component={CheckOutSummaryContainer} />
     </LayOutContainer>
   );
 }

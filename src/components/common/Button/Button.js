@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import classes from './Button.css';
 
 const StyledButton = (props) =>  {
@@ -13,7 +14,9 @@ const StyledButton = (props) =>  {
 };
 
 StyledButton.propTypes = {
-  
+  clicked: PropTypes.func,
+  isPrimary: PropTypes.bool.isRequired,
+  children: PropTypes.oneOf([PropTypes.string, PropTypes.element])
 }
 
 export default StyledButton;
