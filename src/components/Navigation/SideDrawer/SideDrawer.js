@@ -1,37 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import Logo from '../../common/Logo/Logo';
-import Navigation from '../Navigation/Navigation';
-import BackDrop from '../../common/Backdrop/Backdrop'
 
+import Logo from '../../Logo/Logo';
+import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.css';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import Aux from '../../../hoc/Aux/Aux';
 
-const SideDrawer = (props) => {
+const sideDrawer = ( props ) => {
+    let attachedClasses = [classes.SideDrawer, classes.Close];
+    if (props.open) {
+        attachedClasses = [classes.SideDrawer, classes.Open];
+    }
+    return (
+        <Aux>
+            <Backdrop show={props.open} clicked={props.closed}/>
+            <div className={attachedClasses.join(' ')}>
+                <div className={classes.Logo}>
+                    <Logo />
+                </div>
+                <nav>
+                    <NavigationItems />
+                </nav>
+            </div>
+        </Aux>
+    );
+};
 
-  let attachedClass = [classes.SideDrawer, classes.Close]
-  if(props.sideDrawerVisible) {
-    attachedClass = [classes.SideDrawer, classes.Open]
-  } 
-  
-  console.log('Check Class of SideDrawer',attachedClass.join(' '))
-  return (
-      <>
-        <BackDrop show={props.sideDrawerVisible} onCancle={props.onToggleHamburgerMenu}/>
-        <div className={attachedClass.join(' ')}>
-          <div className={classes.Logo}>
-            <Logo />
-          </div>
-          <nav>
-            <Navigation />
-          </nav>
-        </div>
-      </>
-  );
-}
-
-SideDrawer.propTypes = {
-  sideDrawerVisible: PropTypes.bool.isRequired,
-  onToggleHamburgerMenu: PropTypes.func.isRequired
-}
-
-export default SideDrawer;
+export default sideDrawer;

@@ -1,25 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Logo from '../../common/Logo/Logo';
-import Navigation from '../Navigation/Navigation'
-import classes from './Toolbar.css'
 
-const Toolbar = (props) => {
-  return (
+import classes from './Toolbar.css';
+import Logo from '../../Logo/Logo';
+import NavigationItems from '../NavigationItems/NavigationItems';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
+
+const toolbar = ( props ) => (
     <header className={classes.Toolbar}>
-      <div 
-        onClick={props.openHamburgerMenu} 
-        style={{cursor: 'pointer'}}>Menu</div>
-      <Logo />
-      <nav>
-        <Navigation />
-      </nav>
+        <DrawerToggle clicked={props.drawerToggleClicked} />
+        <div className={classes.Logo}>
+            <Logo />
+        </div>
+        <nav className={classes.DesktopOnly}>
+            <NavigationItems />
+        </nav>
     </header>
-  );
-};
+);
 
-Toolbar.propTypes = {
-  openHamburgerMenu: PropTypes.func.isRequired
-}
-
-export default Toolbar
+export default toolbar;
